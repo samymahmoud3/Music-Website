@@ -148,6 +148,20 @@ masterPlay.addEventListener('click', () =>{
     }
 });
 
+//classlist pause&play icons for songs
+const makeAllPlays = () => {
+    Array.from(document.getElementsByClassName('playListPlay')).forEach((el) => {
+        el.classList.add('bi-play-circle-fill');
+        el.classList.remove('bi-pause-circle-fill');
+    });
+};
+//background selected for songs
+const makeAllBackground = () => {
+    Array.from(document.getElementsByClassName('songItem')).forEach((el) => {
+        el.style.background = 'rgb(105, 105, 105, .0)';
+    });
+};
+
 //link songs name&poster with master play
 let index = 0;
 let poster_master_play = document.getElementById('poster-master-play');
@@ -170,6 +184,13 @@ Array.from(document.getElementsByClassName('playListPlay')).forEach((e) => {
             let {songName} = elss;
             title.innerHTML = songName;
         });
+        //do background selected for songs
+        makeAllBackground();
+        Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+        //do classlist pause&play icons for songs
+        makeAllPlays();
+        el.target.classList.remove('bi-play-circle-fill');
+        el.target.classList.add('bi-pause-circle-fill');
     });
 });
 
