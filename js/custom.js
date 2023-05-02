@@ -134,7 +134,6 @@ Array.from(document.getElementsByClassName('songItem')).forEach((e, i) => {
 //play&pause masterPlay music
 let masterPlay = document.getElementById('masterPlay');
 let wave = document.getElementById('wave');
-
 masterPlay.addEventListener('click', () =>{
     if(music.paused || music.currentTime <= 0){
         music.play();
@@ -147,6 +146,31 @@ masterPlay.addEventListener('click', () =>{
         masterPlay.classList.add('bi-play-fill');
         masterPlay.classList.remove('bi-pause-fill');
     }
+});
+
+//link songs name&poster with master play
+let index = 0;
+let poster_master_play = document.getElementById('poster-master-play');
+let title = document.getElementById('title');
+Array.from(document.getElementsByClassName('playListPlay')).forEach((e) => {
+    e.addEventListener('click', (el) => {
+        index = el.target.id;
+        music.src = `audio/${index}.mp3`;
+        poster_master_play.src = `images/${index}.jpg`;
+        music.play();
+        wave.classList.add('active1');
+        masterPlay.classList.remove('bi-play-fill');
+        masterPlay.classList.add('bi-pause-fill');
+        
+        let songTitles = songs.filter((els) => {
+            return els.id == index;
+        });
+
+        songTitles.forEach(elss =>{
+            let {songName} = elss;
+            title.innerHTML = songName;
+        });
+    });
 });
 
 
