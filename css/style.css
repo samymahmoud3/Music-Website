@@ -423,7 +423,7 @@ header .master-play .vol {
 header .master-play .vol .fa-volume-high {
     position: absolute;
     font-size: 16px;
-    top: -8px;
+    top: -10px;
     left: -30px;
     color: #fff;
 }
@@ -440,9 +440,10 @@ header .master-play .vol input {
 
 header .master-play .vol .vol-bar {
     position: absolute;
-    width: 50%;
+    width: 100%;
     height: 100%;
-    top: 0px;
+    background: #36e2ec;
+    top: 0;
     transition: 1s linear;
     -webkit-transition: 1s linear;
     -moz-transition: 1s linear;
@@ -456,7 +457,7 @@ header .master-play .vol .dot {
     height: 5px;
     background: #36e2ec;
     top: -1.5px;
-    left: 0%;
+    left: 100%;
     border-radius: 50%;
     transition: 1s linear;
     -webkit-transition: 1s linear;
@@ -474,7 +475,7 @@ header .master-play .vol .dot::before {
     content: '';
     width: 15px;
     height: 15px;
-    top: -7px;
+    top: -6px;
     left: -6.5px;
     box-shadow: inset 0px 0px 3px #36e2ec;
     border: 1px solid #36e2ec;
