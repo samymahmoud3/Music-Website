@@ -233,6 +233,34 @@ seek.addEventListener('change', () => {
 });
 
 
+//volume bar//
+let vol_icon = document.getElementById('vol-icon');
+let vol = document.getElementById('vol');
+let vol_bar = document.getElementsByClassName('vol-bar')[0];
+let vol_dot = document.getElementById('vol-dot');
+
+vol.addEventListener('change', () => {
+    if (vol.value == 0) {
+        vol_icon.classList.remove('bi-volume-up-fill');
+        vol_icon.classList.remove('bi-volume-down-fill');
+        vol_icon.classList.add('bi-volume-off-fill');
+    }
+    if (vol.value > 0) {
+        vol_icon.classList.remove('bi-volume-up-fill');
+        vol_icon.classList.add('bi-volume-down-fill');
+        vol_icon.classList.remove('bi-volume-off-fill');
+    }
+    if (vol.value > 50) {
+        vol_icon.classList.add('bi-volume-up-fill');
+        vol_icon.classList.remove('bi-volume-down-fill');
+        vol_icon.classList.remove('bi-volume-off-fill');
+    }
+    let vol_a = vol.value;
+    vol_bar.style.width = `${vol_a}%`;
+    vol_dot.style.left = `${vol_a}%`;
+    music.volume = vol_a / 100;
+});
+
 //============scroll popular-songs============================
 let pop_song_right = document.getElementById('pop_song_right');
 let pop_song_left = document.getElementById('pop_song_left');
