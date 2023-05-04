@@ -261,6 +261,71 @@ vol.addEventListener('change', () => {
     music.volume = vol_a / 100;
 });
 
+
+
+//============next&back action=========================
+let back = document.getElementById('back');
+let next = document.getElementById('next');
+//back action
+back.addEventListener('click', () => {
+    index -= 1;
+    if (index < 1) {
+        index = Array.from(document.getElementsByClassName('songItem')).length;
+    };
+    music.src = `audio/${index}.mp3`;
+    poster_master_play.src = `images/${index}.jpg`;
+    music.play();
+    wave.classList.add('active1');
+    masterPlay.classList.remove('bi-play-fill');
+    masterPlay.classList.add('bi-pause-fill');
+    
+    let songTitles = songs.filter((els) => {
+        return els.id == index;
+    });
+
+    songTitles.forEach(elss =>{
+        let {songName} = elss;
+        title.innerHTML = songName;
+    });
+    //do background selected for songs
+    makeAllBackground();
+    Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+    //do classlist pause&play icons for songs
+    makeAllPlays();
+    el.target.classList.remove('bi-play-circle-fill');
+    el.target.classList.add('bi-pause-circle-fill');
+});
+
+//next action
+next.addEventListener('click', () => {
+    index ++;
+    if (index > Array.from(document.getElementsByClassName('songItem')).length) {
+        index = 1;
+    };
+    music.src = `audio/${index}.mp3`;
+    poster_master_play.src = `images/${index}.jpg`;
+    music.play();
+    wave.classList.add('active1');
+    masterPlay.classList.remove('bi-play-fill');
+    masterPlay.classList.add('bi-pause-fill');
+    
+    let songTitles = songs.filter((els) => {
+        return els.id == index;
+    });
+
+    songTitles.forEach(elss =>{
+        let {songName} = elss;
+        title.innerHTML = songName;
+    });
+    //do background selected for songs
+    makeAllBackground();
+    Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+    //do classlist pause&play icons for songs
+    makeAllPlays();
+    el.target.classList.remove('bi-play-circle-fill');
+    el.target.classList.add('bi-pause-circle-fill');
+});
+
 //============scroll popular-songs============================
 let pop_song_right = document.getElementById('pop_song_right');
 let pop_song_left = document.getElementById('pop_song_left');
