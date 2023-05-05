@@ -165,6 +165,7 @@ const makeAllBackground = () => {
 //link songs name&poster with master play
 let index = 0;
 let poster_master_play = document.getElementById('poster-master-play');
+let download_music = document.getElementById('download_music');//download icon
 let title = document.getElementById('title');
 Array.from(document.getElementsByClassName('playListPlay')).forEach((e) => {
     e.addEventListener('click', (el) => {
@@ -175,7 +176,7 @@ Array.from(document.getElementsByClassName('playListPlay')).forEach((e) => {
         wave.classList.add('active1');
         masterPlay.classList.remove('bi-play-fill');
         masterPlay.classList.add('bi-pause-fill');
-        
+        download_music.href = `audio/${index}.mp3`;//download icon
         let songTitles = songs.filter((els) => {
             return els.id == index;
         });
@@ -183,6 +184,7 @@ Array.from(document.getElementsByClassName('playListPlay')).forEach((e) => {
         songTitles.forEach(elss =>{
             let {songName} = elss;
             title.innerHTML = songName;
+            download_music.setAttribute('download', songName);//download icon
         });
         //do background selected for songs
         makeAllBackground();
