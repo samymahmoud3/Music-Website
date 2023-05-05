@@ -332,6 +332,14 @@ header .master-play .icon .fa-music,
     margin: 0 5px;
 }
 
+
+header .master-play .icon #download_music {
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 10px;
+}
+
 header .master-play span {
     color: #fff;
     width: 32px;
