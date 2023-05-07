@@ -355,3 +355,137 @@ pop_art_right.addEventListener('click' , () => {
 pop_art_left.addEventListener('click' , () => {
     item.scrollLeft -= 300;
 });
+
+//==========shuffle&repeat===============================//
+let shuffle = document.getElementsByClassName('shuffle')[0];
+shuffle.addEventListener('click', () => {
+    let a = shuffle.innerHTML;
+
+    switch (a) {
+        case "next":
+            shuffle.classList.add('bi-arrow-repeat');
+            shuffle.classList.remove('bi-music-note-beamed');
+            shuffle.classList.remove('bi-shuffle');
+            shuffle.innerHTML = 'repeat';
+            break;
+
+        case "repeat":
+            shuffle.classList.remove('bi-arrow-repeat');
+            shuffle.classList.remove('bi-music-note-beamed');
+            shuffle.classList.add('bi-shuffle');
+            shuffle.innerHTML = 'random';
+            break;
+
+        case "random":
+            shuffle.classList.remove('bi-arrow-repeat');
+            shuffle.classList.add('bi-music-note-beamed');
+            shuffle.classList.remove('bi-shuffle');
+            shuffle.innerHTML = 'next';
+            break;
+    }
+});
+
+const next_music = () => {
+    if (index == songs.length) {
+        index = 1;
+    } else {
+        index ++;
+    }
+    music.src = `audio/${index}.mp3`;
+    poster_master_play.src = `images/${index}.jpg`;
+    music.play();
+    wave.classList.add('active1');
+    masterPlay.classList.remove('bi-play-fill');
+    masterPlay.classList.add('bi-pause-fill');
+    download_music.href = `audio/${index}.mp3`;//download icon
+    let songTitles = songs.filter((els) => {
+        return els.id == index;
+    });
+
+    songTitles.forEach(elss =>{
+        let {songName} = elss;
+        title.innerHTML = songName;
+        download_music.setAttribute('download', songName);//download icon
+    });
+    //do background selected for songs
+    makeAllBackground();
+    Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+    //do classlist pause&play icons for songs
+    makeAllPlays();
+    el.target.classList.remove('bi-play-circle-fill');
+    el.target.classList.add('bi-pause-circle-fill');
+};
+
+const random_music = () => {
+    if (index == songs.length) {
+        index = 1;
+    } else {
+        index = Math.floor(Math.random() * (songs.length) + 1);
+    }
+    music.src = `audio/${index}.mp3`;
+    poster_master_play.src = `images/${index}.jpg`;
+    music.play();
+    wave.classList.add('active1');
+    masterPlay.classList.remove('bi-play-fill');
+    masterPlay.classList.add('bi-pause-fill');
+    download_music.href = `audio/${index}.mp3`;//download icon
+    let songTitles = songs.filter((els) => {
+        return els.id == index;
+    });
+
+    songTitles.forEach(elss =>{
+        let {songName} = elss;
+        title.innerHTML = songName;
+        download_music.setAttribute('download', songName);//download icon
+    });
+    //do background selected for songs
+    makeAllBackground();
+    Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+    //do classlist pause&play icons for songs
+    makeAllPlays();
+    el.target.classList.remove('bi-play-circle-fill');
+    el.target.classList.add('bi-pause-circle-fill');
+};
+
+const repeat_music = () => {
+    index;
+    music.src = `audio/${index}.mp3`;
+    poster_master_play.src = `images/${index}.jpg`;
+    music.play();
+    wave.classList.add('active1');
+    masterPlay.classList.remove('bi-play-fill');
+    masterPlay.classList.add('bi-pause-fill');
+    download_music.href = `audio/${index}.mp3`;//download icon
+    let songTitles = songs.filter((els) => {
+        return els.id == index;
+    });
+
+    songTitles.forEach(elss =>{
+        let {songName} = elss;
+        title.innerHTML = songName;
+        download_music.setAttribute('download', songName);//download icon
+    });
+    //do background selected for songs
+    makeAllBackground();
+    Array.from(document.getElementsByClassName('songItem'))[index-1].style.background ="rgb(105, 105, 105, .1)";
+    //do classlist pause&play icons for songs
+    makeAllPlays();
+    el.target.classList.remove('bi-play-circle-fill');
+    el.target.classList.add('bi-pause-circle-fill');
+};
+
+music.addEventListener('ended', () => {
+    let b = shuffle.innerHTML;
+    switch (b) {
+
+        case "repeat":
+            repeat_music();
+        break;
+        case "next":
+            next_music();
+        break;
+        case "random":
+            random_music();
+        break;
+    }
+});
