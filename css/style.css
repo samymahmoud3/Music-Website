@@ -315,7 +315,7 @@ header .master-play h5 .subtitle {
     white-space: nowrap;
 }
 
-header .master-play h5 .icon {
+header .master-play  .icon {
     font-size: 20px;
     color: #fff;
     margin: 0 20px 0 40px;
@@ -323,13 +323,19 @@ header .master-play h5 .icon {
     align-items: center;
 }
 
-header .master-play .icon .fa-music,
-.fa-backward-step,
-.fa-play,
-.fa-forward-step,
-.fa-cloud-arrow-down {
+.bi {
     cursor: pointer;
-    margin: 0 5px;
+    font-size: 20px;
+    padding: 0 1px;
+}
+
+header .master-play .icon .shuffle {
+    font-size: 17px;
+    width: 17.5px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-right: 10px;
 }
 
 
@@ -354,7 +360,7 @@ header .master-play #currentStart {
 
 header .master-play .bar {
     position: relative;
-    width: 43%;
+    width: 40%;
     height: 2px;
     background: rgb(105, 105, 170, .1);
     margin: 0 15px 0 10px;
